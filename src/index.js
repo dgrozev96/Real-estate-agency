@@ -1,10 +1,13 @@
 const express = require('express');
 
-const app = express();
+
 const { PORT } = require('./constants');
 const routes = require('./routes');
+const { initDatabase } = require('./config/database-config');
 
+const app = express();
 //routes
+//global error handler
 //controllers
 //services
 //add database
@@ -14,8 +17,18 @@ const routes = require('./routes');
 
 require('./config/express-config')(app);
 require('./config/hbs-config')(app);
+
+
 app.use(routes)
 
+initDatabase()
+.then(() => {
+        app.listen(PORT, () => console.log(`App is running on http://localhost:${PORT}`));
+    })
+    .catch(err => {
+        console.log('Cannot connect to database', err);
+    })
 
 
-app.listen(PORT, () => console.log(`App is running on http://localhost:${PORT}`));
+
+

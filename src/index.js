@@ -8,7 +8,7 @@ require('./config/hbs-config')(app);
 
 
 app.get('/', (req, res) => {
-    res.render('home', {layout: false})
+    res.render('home')
 });
 
 app.listen(port, () => console.log(`App is running on http://localhost:${port}`));

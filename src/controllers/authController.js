@@ -39,15 +39,21 @@ router.post('/register', async (req, res) => {
         return res.render('auth/register')
     }
 
-    authService.register({ name, username, password, rePassword })
 
     try {
         await authService.register({
             name,
             username,
             password,
-            rePassword
+        });
+
+
+       let token =  await authService.login({
+            username,
+            password
         })
+
+        res.cookie(AUTH_COOKIE_NAME, token);
         res.redirect('/')
     } catch (err) {
         //TODO return error response
@@ -55,6 +61,11 @@ router.post('/register', async (req, res) => {
 
 
 
+})
+
+router.get('/logout', (req, res) => {
+    res.clearCookie(AUTH_COOKIE_NAME);
+    res.redirect('/')
 })
 
 module.exports = router;

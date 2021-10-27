@@ -6,15 +6,6 @@ const routes = require('./routes');
 const { initDatabase } = require('./config/database-config');
 
 const app = express();
-//routes
-//global error handler
-//controllers
-//services
-//add database
-//add model
-//auth 
-//authorization
-
 require('./config/express-config')(app);
 require('./config/hbs-config')(app);
 

@@ -21,6 +21,14 @@
             </div>
         </div>-->
 
+    {{#if error}}
+    <div>
+        <div class="errorContainer">
+            <p>{{error}}</p>
+        </div>
+    </div>
+    {{/if}}
+
         <nav>
             <a href="/">Home</a>
             <ul>
@@ -29,7 +37,7 @@
                 <!-- Guest users -->
                 {{#if user}}
                 <li><a href="/housing/create">Create offer</a></li>
-                <li><a href="#">Search</a></li>
+                <li><a href="/search">Search</a></li>
                 <li><a href="/auth/logout">Logout</a></li>
                 
                 {{else}}
